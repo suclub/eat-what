@@ -31,7 +31,7 @@
       background-image: url(Category.png);
     }
     .add{
-      margin-right: 9px;
+      margin-right: 12px;
       background-image: url(add.png);
     }
     .text{
