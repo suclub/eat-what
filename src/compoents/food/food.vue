@@ -38,7 +38,7 @@ export default {
 <style lang="scss">
   .food{
     width: 80%;
-    margin: 2px auto;
+    margin: .125rem auto;
     .mint-cell{
       .mint-cell-wrapper{
         .mint-cell-title{

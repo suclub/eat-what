@@ -14,31 +14,31 @@
   .m-header{
     display: flex;
     justify-content: space-between;
-    height: 44px;
+    height: 2.75rem;
     text-align: center;
     background-color: #4EA4F5;
     font-size: 0;
     .meun, .add {
       display: inline-block;
       vertical-align: top;
-      margin: 7px;
+      margin: .44rem;
       width: 30px;
       height: 30px;
       background-size: 30px 30px;
     }
     .meun{
-      margin-left: 12px;
+      margin-left: .75rem;
       background-image: url(Category.png);
     }
     .add{
-      margin-right: 12px;
+      margin-right: .75rem;
       background-image: url(add.png);
     }
     .text{
       display: inline-block;
       vertical-align: top;
-      line-height: 44px;
-      font-size: 18px;
+      line-height: 2.75rem;
+      font-size: 1.125rem;
       color: #ffffff
     }
   }

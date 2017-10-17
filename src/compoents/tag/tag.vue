@@ -10,7 +10,7 @@
 
 <style scoped lang="scss">
   .tag {
-    height: 30px;
+    height: 1.875rem;
     text-align: center;
     background-color: #EBEBEB;
     .tag_text { 
@@ -19,12 +19,12 @@
       vertical-align: top;
       width: 80%;
       margin: 0 auto;
-      line-height: 30px;
-      font-size: 14px;
+      line-height: 1.875rem;
+      font-size: .875rem;
       color: #797979;
       background: url(more_unfold.png) no-repeat right;
-      background-size: 28px 28px;
-      padding-right: 26px;
+      background-size: 1.75rem 1.75rem;
+      padding-right: 1.625rem;
     }
   }
 </style>
