@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list">
     <mheader></mheader>
     <tag></tag>
     <food></food>
@@ -21,5 +21,7 @@
 </script>
 
 <style scoped lang="scss">
-
+  .list{
+    min-height: 100vh;
+  }
 </style>
