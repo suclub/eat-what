@@ -25,7 +25,7 @@
           <input type="text" @click.stop>
           <button class="add-confirm" @click="addShow = !addShow">确定</button>
         </div>
-        <div class="close" @click="addShow = !addShow">
+        <div class="close">
           <div></div>
         </div>
       </div>
