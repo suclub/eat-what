@@ -9,6 +9,9 @@
 <script type="text/ecmascript-6">
 
 export default {
+  created: function () {
+    return this.$store.commit('initList')
+  }
 }
 </script>
 

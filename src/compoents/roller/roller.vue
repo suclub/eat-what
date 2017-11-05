@@ -1,28 +1,30 @@
 <template>
   <div class="roller">
     <div class="roller-wrap">
-      <ul class="roller-content" :style="{ top, transition}">
-        <li v-for="(item, index) in prizeList" :key="index" >{{item.data}}</li>
+      <ul class="roller-content" :style="{ top, transition }">
+        <li 
+        v-for="(item, index) in rollerList" 
+        :key="index" 
+        v-if="choose == '' ? true : item.tag == choose">{{item.title}}</li>
       </ul>
     </div>
     <div class="roller-button">
-      <button @click="start()">{{buttonText}}</button>
+      <mt-button class="mt-button" @click="start()">{{buttonText}}</mt-button>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import Vue from 'vue'
+import _ from 'lodash'
+import { Button } from 'mint-ui'
+
+Vue.component(Button.name, Button)
 
 export default {
   data () {
     return {
-      prizeList: [
-        { data: '黄焖鸡' },
-        { data: '刀削面' },
-        { data: '大盘鸡' },
-        { data: '凉皮' },
-        { data: '串串' }
-      ],
+      rollerList: 0,
       activeIndex: 0,
       buttonText: '开始',
       drawTime: 1,
@@ -30,27 +32,39 @@ export default {
       timeoutSplice: 0
     }
   },
+
   computed: {
     top () {
       return -this.activeIndex * 4 + 'rem'
     },
     transition () {
-      return this.activeIndex === 0 ? 'none' : 'top 0.1s'
+      return this.activeIndex === 0 ? 'none' : 'all 0.1s'
+    },
+    dataList () {
+      return this.$store.state.dataList
+    },
+    choose () {
+      return this.$store.state.choose
     }
   },
+
+  created () {
+    console.log(_.isEmpty() ? 'Lodash is available here!' : 'Uh oh..')
+    this.rollerList = _.cloneDeep(this.dataList)
+  },
+
   methods: {
     start () {
       this.drawTime++
-      console.log(this.drawTime)
       this.buttonText = '停止'
       if (this.drawTime % 2 === 0) {
         this.intervalPush = setInterval(_ => {
-          this.prizeList.push(this.prizeList[0])
           this.activeIndex += 1
         }, 100)
         setTimeout(_ => {
           this.timeoutSplice = setInterval(_ => {
-            this.prizeList.splice(0, 1)
+            this.rollerList.push(this.rollerList[0])
+            this.rollerList.splice(0, 1)
             this.activeIndex = 0
           }, 100)
         }, 50)
@@ -87,16 +101,14 @@ export default {
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  button {
+  .mt-button {
     width: 40%;
     height: 2.75rem;
     margin: 3rem auto 0;
     color: #fff;
     font-size: 1rem;
     border: none;
-    border-radius: 1.375rem;
-    outline:none;
-    background-color: #4EA4F5;
+    background-color: #FF6F3C;
   }
 }
 

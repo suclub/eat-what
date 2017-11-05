@@ -5,9 +5,10 @@
       <h1 class="text">文理吃啥</h1>
       <div class="add" @click="addShow = !addShow"></div>
     </div>
+
     <transition name="menu">
       <div class="header-menu" @click="menuShow = !menuShow" v-show="menuShow">
-        <div class="menu-content" @click.stop>
+        <div class="menu-content">
           <div class="menu-wrapper">
             <router-link tag="div" class="menu-item" to="/select">
               <span class="menu-link icon-sel">选择</span>
@@ -19,11 +20,12 @@
         </div>
       </div>
     </transition>
+
     <transition name="add">
       <div class="header-add" v-show="addShow" @click="addShow = !addShow">
-        <div class="add-wrapper" >
-          <input type="text" @click.stop>
-          <button class="add-confirm" @click="addShow = !addShow">确定</button>
+        <div class="add-wrapper" @click.stop>
+          <mt-field class="add_field" placeholder="请输入食物名称" v-model="inputText"></mt-field>
+          <mt-button type="primary" class="add-confirm" name="list" @click="confirm">确定</mt-button>
         </div>
         <div class="close">
           <div></div>
@@ -34,11 +36,28 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import Vue from 'vue'
+  import { Field, Button } from 'mint-ui'
+
+  Vue.component(Button.name, Button)
+  Vue.component(Field.name, Field)
   export default {
     data () {
       return {
         addShow: false,
-        menuShow: false
+        menuShow: false,
+        inputText: null,
+        inputList: null
+      }
+    },
+    methods: {
+      confirm () {
+        this.inputList = this.inputText
+        if (this.inputList) {
+          this.$store.commit('addList', this.inputList)
+        }
+        this.inputText = ''
+        this.addShow = !this.addShow
       }
     }
   }
@@ -50,7 +69,7 @@
     justify-content: space-between;
     height: 2.75rem;
     text-align: center;
-    background-color: #4EA4F5;
+    background-color: #FF6F3C;
     font-size: 0;
     .meun, .add {
       display: inline-block;
@@ -63,10 +82,16 @@
     .meun{
       margin-left: .75rem;
       background-image: url(Category.svg);
+      &:active {
+        background-image: url(Category_2.svg);
+      }
     }
     .add{
       margin-right: .75rem;
       background-image: url(add.svg);
+      &:active {
+        background-image: url(add_2.svg);
+      }
     }
     .text{
       display: inline-block;
@@ -84,7 +109,7 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background: rgba(7, 17, 27, 0.5);
+    background: rgba(7, 17, 27, 0.7);
     &.menu-enter-active{
       transition: all 0.4s ease;
       transform: translate3d(0, 0, 0);
@@ -100,33 +125,37 @@
     .menu-content {
       width: 45%;
       height: 100%;
-      background: rgba(101, 162, 239, 0.9);
+      background: #FF9A3C;
       box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
-      .menu-wrapper{
-        padding-top: 2.75rem;
-        .menu-item {
-          height: 2.75rem;
-          padding-left: 1rem;
-          vertical-align: top;
-          line-height: 2.75rem;
-          .menu-link {
-            padding-left: 1.75rem;
-            color: #fff;
-            font-size: 1.125rem;
+      padding-top: 2.75rem;
+      z-index: 50;
+      .menu-item {
+        height: 2.75rem;
+        padding-left: 1rem;
+        vertical-align: top;
+        line-height: 2.75rem;
+        .menu-link {
+          padding-left: 1.75rem;
+          color: #fff;
+          font-size: 1.125rem;
+        }
+        &.router-link-active {
+          &.menu-item {
+            background-color: #FF6F3C;
           }
-          .icon-sel {
-            background: url(success.svg) no-repeat;
-            background-size: 1.125rem 1.125rem;
-            background-position: 0 50%;
-          }
-          .icon-list {
-            background: url(Viewlist.svg) no-repeat;
-            background-size: 1.125rem 1.125rem;
-            background-position: 0 50%;
-          }
+        }
+        .icon-sel {
+          background: url(success.svg) no-repeat;
+          background-size: 1.125rem 1.125rem;
+          background-position: 0 50%;
+        }
+        .icon-list {
+          background: url(Viewlist.svg) no-repeat;
+          background-size: 1.125rem 1.125rem;
+          background-position: 0 50%;
+        }
           
         }
-      }
     }
   }
   .header-add {
@@ -155,25 +184,26 @@
       justify-content: space-between;
       flex-direction: column;
       align-items: center;
-      margin-top: 50%;
-      input {
-        width: 60%;
+      width: 85%;
+      margin: 46% auto;
+      padding: 10% 0;
+      background-color: #FF9A3C;
+      border-radius: 4px;
+      .add_field {
+        width: 90%;
         height: 2.5rem;
         border: none;
-        border-radius: 1.25rem;
+        border-radius: 4px;
         outline:none;
-        background-color: #EBEBEB;
-        padding: 0 1.25rem;
-        font-size: 1rem;
+        // padding: 0 1.25rem;
+        // font-size: 1rem;
       }
       button{
         width: 25%;
         height: 2.5rem;
-        border: none;
-        border-radius: 1.25rem;
         outline:none;
-        margin-top: 2.5rem;
-        background-color: #4EA4F5;
+        margin-top: 1.5rem;
+        background-color: #FF6F3C;
         color: #fff;
         font-size: 1rem;
       }
@@ -190,6 +220,9 @@
         width: 2.5rem;
         height: 2.5rem;
         margin: -2.5rem auto 0 auto;
+        &:active {
+          background-image: url(close_2.svg);
+        }
       }
     }
   }
