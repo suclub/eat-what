@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state () {
+  state() {
     return {
       dataList: [],
       choose: ''
@@ -12,13 +12,13 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    addList (state, inputList) {
+    addList(state, inputList) {
       var timestamp = Date.parse(new Date())
-      state.dataList.push({title: inputList, tag: '', date: timestamp})
+      state.dataList.push({ title: inputList, tag: state.choose, date: timestamp })
       window.localStorage.setItem('dataList', JSON.stringify(state.dataList))
     },
 
-    deleteList (state, listDate) {
+    deleteList(state, listDate) {
       for (let i = 0; i < state.dataList.length; i++) {
         if (state.dataList[i].date === listDate) {
           state.dataList.splice(i, 1)
@@ -27,7 +27,7 @@ export default new Vuex.Store({
       window.localStorage.setItem('dataList', JSON.stringify(state.dataList))
     },
 
-    confirm (state, conList) {
+    confirm(state, conList) {
       for (let i = 0; i < state.dataList.length; i++) {
         if (state.dataList[i].date === conList.date) {
           state.dataList.splice(i, 1, conList)
@@ -36,11 +36,11 @@ export default new Vuex.Store({
       window.localStorage.setItem('dataList', JSON.stringify(state.dataList))
     },
 
-    choose (state, tagValue) {
+    choose(state, tagValue) {
       state.choose = tagValue
     },
 
-    initList (state) {
+    initList(state) {
       if (window.localStorage.getItem('dataList')) {
         state.dataList = JSON.parse(window.localStorage.getItem('dataList'))
       } else {

@@ -36,15 +36,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Vue from 'vue'
-import { CellSwipe, Field, Button } from 'mint-ui'
-
-Vue.component(CellSwipe.name, CellSwipe)
-Vue.component(Field.name, Field)
-Vue.component(Button.name, Button)
-
 export default {
-  data () {
+  data() {
     return {
       food_list: null,
       active: 'tab-container1',
@@ -57,10 +50,10 @@ export default {
   },
 
   methods: {
-    deleteCell (date) {
+    deleteCell(date) {
       this.$store.commit('deleteList', date)
     },
-    compile (date) {
+    compile(date) {
       this.comShow = !this.comShow
       this.foodDate = date
       for (let i = 0; i < this.dataList.length; i++) {
@@ -70,19 +63,19 @@ export default {
         }
       }
     },
-    confirm () {
-      this.conList = {title: this.comTitle, tag: this.comTag, date: this.foodDate}
+    confirm() {
+      this.conList = { title: this.comTitle, tag: this.comTag, date: this.foodDate }
       this.$store.commit('confirm', this.conList)
       this.comShow = !this.comShow
     }
   },
 
   computed: {
-    dataList () {
+    dataList() {
       return this.$store.state.dataList
     },
 
-    choose () {
+    choose() {
       return this.$store.state.choose
     }
   }
@@ -90,56 +83,56 @@ export default {
 </script>
 
 <style lang="scss">
-  .food{
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 1.875rem;
-    .food_com{
+.food {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 1.875rem;
+  .food_com {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 17, 27, 0.7);
+    .food_wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      width: 85%;
+      margin: 46% auto;
+      padding: 10% 0 5% 0;
+      background-color: #ff9a3c;
+      border-radius: 4px;
+      .food_field {
+        width: 90%;
+        border-radius: 4px;
+        margin: 4px auto;
+      }
+      .food_button {
+        margin: 10px;
+        width: 30%;
+        background-color: #ff6f3c;
+      }
+    }
+    .close {
       position: absolute;
-      z-index: 99;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(7, 17, 27, 0.7);
-      .food_wrapper{
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        align-items: center;
-        width: 85%;
-        margin: 46% auto;
-        padding: 10% 0 5% 0;
-        background-color: #FF9A3C;
-        border-radius: 4px;
-        .food_field {
-          width: 90%;
-          border-radius: 4px;
-          margin: 4px auto;
-        }
-        .food_button {
-          margin: 10px;
-          width: 30%;
-          background-color: #FF6F3C;
-        }
-      }
-      .close{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
+      height: 2.5rem;
+      div {
+        background: url(close.svg) no-repeat;
+        background-size: 2.5rem 2.5rem;
+        width: 2.5rem;
         height: 2.5rem;
-        div{
-          background: url(close.svg) no-repeat;
-          background-size: 2.5rem 2.5rem;
-          width: 2.5rem;
-          height: 2.5rem;
-          margin: -2.5rem auto 0 auto;
-          &:active {
-            background-image: url(close_2.svg);
-          }
+        margin: -2.5rem auto 0 auto;
+        &:active {
+          background-image: url(close_2.svg);
         }
       }
     }
   }
+}
 </style>

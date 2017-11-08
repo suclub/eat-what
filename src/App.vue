@@ -7,24 +7,24 @@
 </template>
 
 <script type="text/ecmascript-6">
-
 export default {
-  created: function () {
+  created: function() {
     return this.$store.commit('initList')
   }
 }
 </script>
 
 <style scoped lang="scss">
-    .view-enter {
-      opacity: 0;
-      transform: translate3d(-24px, 0, 0);
-    }
-    .view-leave-to {
-      opacity: 0;
-      transform: translate3d(24px, 0, 0);
-    }
-    .view-leave-active, .view-enter-active {
-      transition: all .5s ease;
-    }
+.view-enter {
+  opacity: 0;
+  transform: translate3d(-24px, 0, 0);
+}
+.view-leave-to {
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
+}
+.view-leave-active,
+.view-enter-active {
+  transition: all 0.5s ease;
+}
 </style>

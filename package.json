@@ -10,7 +10,6 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "mint-ui": "^2.2.9",
     "vue": "^2.4.4",
     "vue-router": "^3.0.0",

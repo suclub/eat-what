@@ -1,27 +1,27 @@
 <template>
   <div class="list">
-    <mheader></mheader>
+    <m-header></m-header>
     <tag></tag>
     <food></food>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import Mheader from '../../compoents/m-header/m-header.vue'
-  import Tag from '../../compoents/tag/tag.vue'
-  import Food from '../../compoents/food/food.vue'
+import MHeader from '../../components/m-header/m-header.vue'
+import Tag from '../../components/tag/tag.vue'
+import Food from '../../components/food/food.vue'
 
-  export default {
-    components: {
-      Mheader,
-      Tag,
-      Food
-    }
+export default {
+  components: {
+    MHeader,
+    Tag,
+    Food
   }
+}
 </script>
 
 <style scoped lang="scss">
-  .list{
-    min-height: 100vh;
-  }
+.list {
+  min-height: 100vh;
+}
 </style>
