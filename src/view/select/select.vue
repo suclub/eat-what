@@ -22,6 +22,6 @@ export default {
 
 <style scoped lang="scss">
 .select {
-  min-height: 100vh;
+  height: 0;
 }
 </style>

@@ -15,16 +15,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.view-enter {
-  opacity: 0;
-  transform: translate3d(-24px, 0, 0);
-}
+.view-enter,
 .view-leave-to {
-  opacity: 0;
-  transform: translate3d(24px, 0, 0);
+  opacity: 0.1;
 }
 .view-leave-active,
 .view-enter-active {
-  transition: all 0.5s ease;
+  transition: opacity 0.2s;
 }
 </style>

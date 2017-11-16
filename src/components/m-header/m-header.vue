@@ -5,30 +5,30 @@
       <h1 class="text">文理吃啥</h1>
       <div class="add" @click="addShow = !addShow"></div>
     </div>
-
-    <transition name="menu">
-      <div class="header-menu" @click="menuShow = !menuShow" v-show="menuShow">
-        <div class="menu-content">
-          <div class="menu-wrapper">
-            <router-link tag="div" class="menu-item" to="/select">
-              <span class="menu-link icon-sel">选择</span>
-            </router-link>
-            <router-link tag="div" class="menu-item" to="/list">
-              <span class="menu-link icon-list">列表</span>
-            </router-link>
-          </div>
-        </div>
+    <transition name="bag">
+      <div class="menu-bag" @click="menuShow = !menuShow" v-show="menuShow"></div>
+    </transition>
+    <transition name="content">
+      <div class="menu-content" @click="menuShow = !menuShow" v-show="menuShow">
+        <router-link tag="div" class="menu-item" to="/select">
+          <i class="icon-sel"></i>
+          <span class="menu-link">选择</span>
+        </router-link>
+        <router-link tag="div" class="menu-item" to="/list">
+          <i class="icon-list"></i>
+          <span class="menu-link">列表</span>
+        </router-link>
       </div>
     </transition>
-
     <transition name="add">
       <div class="header-add" v-show="addShow" @click="addShow = !addShow">
         <div class="add-wrapper" @click.stop>
-          <mt-field class="add_field" placeholder="请输入食物名称" v-model="inputText"></mt-field>
-          <mt-button type="primary" class="add-confirm" name="list" @click="confirm">确定</mt-button>
-        </div>
-        <div class="close">
-          <div></div>
+          <h2 class="add-title">添加美食</h2>
+          <mt-field class="add-field" placeholder="给自己多一点选择？" v-model="inputText"></mt-field>
+          <div class="add-btn">
+            <mt-button type="primary" class="add-button" name="list" @click="cancel">取消</mt-button>
+            <mt-button type="primary" class="add-button" name="list" @click="confirm" v-bind:class="{'addClass': inputText === ''}" :disabled="inputText === ''">确定</mt-button>
+          </div>
         </div>
       </div>
     </transition>
@@ -41,31 +41,36 @@ export default {
     return {
       addShow: false,
       menuShow: false,
-      inputText: null,
-      inputList: null
+      inputText: '',
+      inputList: ''
     }
   },
   methods: {
     confirm() {
       this.inputList = this.inputText
-      if (this.inputList) {
-        this.$store.commit('addList', this.inputList)
-      }
+      this.$store.commit('addList', this.inputList)
       this.inputText = ''
       this.addShow = !this.addShow
+    },
+    cancel() {
+      this.addShow = !this.addShow
+      this.inputText = ''
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .header-style {
   display: flex;
   justify-content: space-between;
   height: 2.75rem;
+  width: 100%;
   text-align: center;
-  background-color: #ff6f3c;
+  background-color: rgb(255, 111, 60);
   font-size: 0;
+  position: fixed;
+  top: 0;
   .meun,
   .add {
     display: inline-block;
@@ -76,14 +81,14 @@ export default {
     background-size: 30px 30px;
   }
   .meun {
-    margin-left: 0.75rem;
+    margin-left: 1.05rem;
     background-image: url(Category.svg);
     &:active {
       background-image: url(Category_2.svg);
     }
   }
   .add {
-    margin-right: 0.75rem;
+    margin-right: 0.9rem;
     background-image: url(add.svg);
     &:active {
       background-image: url(add_2.svg);
@@ -93,69 +98,99 @@ export default {
     display: inline-block;
     vertical-align: top;
     line-height: 2.75rem;
-    font-size: 1.125rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 1px;
     color: #ffffff;
   }
 }
-.header-menu {
-  position: absolute;
-  z-index: 80;
+.menu-content {
+  width: 33.3%;
+  height: 100%;
+  background: rgb(255, 111, 60);
+  padding-top: 3.6rem;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(7, 17, 27, 0.7);
-  &.menu-enter-active {
+  z-index: 90;
+  box-shadow: 0px 0px 16px 3px rgb(1, 1, 1);
+  &.content-enter-active {
     transition: all 0.4s ease;
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
-  &.menu-enter,
-  &.menu-leave-to {
+  &.content-enter,
+  &.content-leave-to {
     opacity: 0;
     transform: translate3d(-24px, 0, 0);
   }
-  &.menu-leave-active {
+  &.content-leave-active {
     transition: all 0.4s ease;
   }
-  .menu-content {
-    width: 45%;
-    height: 100%;
-    background: #ff9a3c;
-    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
-    padding-top: 2.75rem;
-    z-index: 50;
-    .menu-item {
-      height: 2.75rem;
-      padding-left: 1rem;
-      vertical-align: top;
-      line-height: 2.75rem;
-      .menu-link {
-        padding-left: 1.75rem;
-        color: #fff;
-        font-size: 1.125rem;
-      }
-      &.router-link-active {
-        &.menu-item {
-          background-color: #ff6f3c;
-        }
+  .menu-item {
+    height: 5.75rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    .menu-link {
+      width: 100%;
+      text-align: center;
+      color: rgb(255, 252, 232);
+      font-size: 1.125rem;
+    }
+    .icon-sel {
+      background: url(success.svg) center -1rem no-repeat;
+      background-size: 6rem 6rem;
+      width: 100%;
+      height: 100%;
+    }
+    .icon-list {
+      background: url(Viewlist.svg) center -1rem no-repeat;
+      background-size: 6rem 6rem;
+      width: 100%;
+      height: 100%;
+    }
+    &.router-link-active {
+      &.menu-item {
+        font-weight: 700;
       }
       .icon-sel {
-        background: url(success.svg) no-repeat;
-        background-size: 1.125rem 1.125rem;
-        background-position: 0 50%;
+        background: url(success_2.svg) center -1rem no-repeat;
+        background-size: 6rem 6rem;
+        width: 100%;
+        height: 100%;
       }
       .icon-list {
-        background: url(Viewlist.svg) no-repeat;
-        background-size: 1.125rem 1.125rem;
-        background-position: 0 50%;
+        background: url(Viewlist_2.svg) center -1rem no-repeat;
+        background-size: 6rem 6rem;
+        width: 100%;
+        height: 100%;
       }
     }
   }
 }
+.menu-bag {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 80;
+  &.bag-enter-active,
+  &.bag-leave-active {
+    transition: opacity 0.2s;
+  }
+  &.bag-enter,
+  &.bag-leave-to {
+    opacity: 0;
+  }
+}
 .header-add {
-  position: absolute;
+  position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
@@ -163,62 +198,58 @@ export default {
   height: 100%;
   overflow: auto;
   background: rgba(7, 17, 27, 0.7);
-  &.add-enter-active {
-    transition: all 0.4s ease;
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
+  &.add-enter-active,
+  &.add-leave-active {
+    transition: opacity 0.2s;
   }
   &.add-enter,
   &.add-leave-to {
     opacity: 0;
-    transform: translate3d(24px, 0, 0);
-  }
-  &.add-leave-active {
-    transition: all 0.4s ease;
   }
   .add-wrapper {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    width: 85%;
+    width: 80%;
     margin: 46% auto;
-    padding: 10% 0;
-    background-color: #ff9a3c;
-    border-radius: 4px;
-    .add_field {
+    background-color: rgb(255, 251, 250);
+    border-radius: 15px;
+    .add-title {
+      margin-top: 25px;
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+    .add-field {
       width: 90%;
-      height: 2.5rem;
-      border: none;
-      border-radius: 4px;
-      outline: none;
-      // padding: 0 1.25rem;
-      // font-size: 1rem;
+      margin-top: 25px;
+      border: 1px solid rgb(196, 196, 196);
     }
-    button {
-      width: 25%;
-      height: 2.5rem;
-      outline: none;
-      margin-top: 1.5rem;
-      background-color: #ff6f3c;
-      color: #fff;
-      font-size: 1rem;
-    }
-  }
-  .close {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2.5rem;
-    div {
-      background: url(close.svg) no-repeat;
-      background-size: 2.5rem 2.5rem;
-      width: 2.5rem;
-      height: 2.5rem;
-      margin: -2.5rem auto 0 auto;
-      &:active {
-        background-image: url(close_2.svg);
+    .add-btn {
+      width: 100%;
+      margin-top: 25px;
+      font-size: 0;
+      .add-button {
+        width: 50%;
+        height: 45px;
+        outline: none;
+        border: none;
+        border-radius: 0;
+        border-top: 1px solid rgb(199, 199, 204);
+        background-color: rgb(255, 251, 250);
+        color: rgb(255, 111, 60);
+        font-size: 1.125rem;
+        &:first-child {
+          border-bottom-left-radius: 15px;
+          border-right: 1px solid rgb(199, 199, 204);
+        }
+        &:last-child {
+          border-bottom-right-radius: 15px;
+          font-weight: 500;
+        }
+      }
+      .addClass {
+        color: rgb(196, 196, 196);
       }
     }
   }

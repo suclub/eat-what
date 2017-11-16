@@ -22,6 +22,8 @@ export default {
 
 <style scoped lang="scss">
 .list {
-  min-height: 100vh;
+  // min-height: 100vh;
+  z-index: -10000;
+  height: 0;
 }
 </style>

@@ -86,8 +86,11 @@ export default {
 
 <style lang="scss">
 .tag {
+  position: fixed;
+  top: 2.75rem;
   background-color: #ff9a3c;
-  height: 2.65rem;
+  height: 2.75rem;
+  width: 100%;
   overflow-x: auto;
   white-space: nowrap;
   &::-webkit-scrollbar {
@@ -95,7 +98,9 @@ export default {
   }
   .tag-button {
     border: none;
+    border-radius: 0;
     height: 100%;
+    width: 4rem;
     background-color: #ff9a3c;
     color: #fff;
   }
