@@ -1,18 +1,17 @@
 module.exports = {
   root: true,
-  parserOptions: { 
+  parserOptions: {
     ecmaVersion: 6,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   extends: 'standard',
   env: {
     es6: true,
-    browser: true,
+    browser: true
   },
-  plugins: [
-    'html'
-  ],
+  plugins: ['html'],
   rules: {
     'no-new': 0,
+    'space-before-function-paren': 0
   }
-};
+}
