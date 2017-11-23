@@ -93,6 +93,7 @@ export default {
 <style lang="scss">
 .food {
   width: 100%;
+  height: 120%;
   position: relative;
   top: 5.5rem;
   z-index: -1000;
@@ -162,6 +163,9 @@ export default {
           border: 1px solid rgb(196, 196, 196);
           &:last-child {
             border-top: none;
+            .mint-cell-wrapper {
+              background-origin: border-box;
+            }
           }
         }
       }
