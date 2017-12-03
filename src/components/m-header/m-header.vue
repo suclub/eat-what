@@ -2,7 +2,7 @@
   <div class="m-header">
     <div class="header-style">
       <div class="meun" @click="menuShow = !menuShow"></div>
-      <h1 class="text">文理吃啥</h1>
+      <h1 class="text">今天吃啥</h1>
       <div class="add" @click="addShow = !addShow"></div>
     </div>
     <transition name="bag">
