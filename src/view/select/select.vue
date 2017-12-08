@@ -20,8 +20,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.select {
-  height: 0;
-}
-</style>
+<style scoped lang="scss"></style>

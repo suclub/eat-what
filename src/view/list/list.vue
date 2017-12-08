@@ -20,10 +20,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.list {
-  // min-height: 100vh;
-  z-index: -10000;
-  height: 0;
-}
-</style>
+<style scoped lang="scss"></style>

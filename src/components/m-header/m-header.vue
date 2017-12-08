@@ -106,9 +106,8 @@ export default {
 }
 .menu-content {
   width: 33.3%;
-  height: 100%;
+  height: 120%;
   background: rgb(255, 111, 60);
-  padding-top: 3.6rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -135,6 +134,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 22px 0;
+    &:first-child {
+      margin-top: 3.6rem;
+    }
     .menu-link {
       width: 100%;
       text-align: center;
@@ -177,7 +179,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120%;
   background: rgba(0, 0, 0, 0.85);
   z-index: 80;
   &.bag-enter-active,

@@ -164,43 +164,50 @@ export default {
 </script>
 
 <style lang="scss">
-.roller-wrap {
+.roller {
+  position: fixed;
+  top: 5.5rem;
+  left: 0;
   width: 100%;
-  height: 12rem;
-  margin: 50% auto 0;
-  overflow: hidden;
-  .roller-content {
-    position: relative;
-    li {
-      line-height: 4rem;
-      text-align: center;
-      color: rgb(225, 225, 225);
-      font-size: 2.5rem;
-    }
-    li:nth-child(2) {
-      color: rgb(45, 45, 45);
-      font-weight: 600;
-      font-size: 3rem;
+  height: 120%;
+  .roller-wrap {
+    width: 100%;
+    height: 12rem;
+    margin: 35% auto 0;
+    overflow: hidden;
+    .roller-content {
+      position: relative;
+      li {
+        line-height: 4rem;
+        text-align: center;
+        color: rgb(225, 225, 225);
+        font-size: 2.5rem;
+      }
+      li:nth-child(2) {
+        color: rgb(45, 45, 45);
+        font-weight: 600;
+        font-size: 3rem;
+      }
     }
   }
-}
-.roller-button {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  .mt-button {
-    width: 70%;
-    height: 4rem;
-    margin-top: 35%;
-    color: #fff;
-    font-size: 2.25rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    border: none;
-    background: linear-gradient(#ff6f3c 30%, #ff843c 70%);
-    border-radius: 2rem;
-    box-shadow: 0px 3px 10px 3px #d6d6d6;
+  .roller-button {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    .mt-button {
+      width: 70%;
+      height: 4rem;
+      margin-top: 25%;
+      color: #fff;
+      font-size: 2.25rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      border: none;
+      background: linear-gradient(#ff6f3c 30%, #ff843c 70%);
+      border-radius: 2rem;
+      box-shadow: 0px 3px 10px 3px #d6d6d6;
+    }
   }
 }
 </style>

@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <transition name="view" mode="out-in">
-      <router-view></router-view>
-    </transition>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -14,13 +12,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.view-enter,
-.view-leave-to {
-  opacity: 0.1;
-}
-.view-leave-active,
-.view-enter-active {
-  transition: opacity 0.2s;
-}
-</style>
+<style scoped lang="scss"></style>
